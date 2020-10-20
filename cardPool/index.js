@@ -1,8 +1,8 @@
 	
-	function matchUrl(url) {
+	function matchUrl(url,dataObject) {
 		switch(url) {
 			case '/card_pool/upload_card':
-				uploadCard()
+				return uploadCard(dataObject)
 				break;
 			// case '/card_pool/download':
 			// 	 console.log(2)
@@ -12,8 +12,9 @@
 			// break;
  	} 
 	}
-	function uploadCard() {
-		console.log(222)
+	function uploadCard(dataObject) {
+		console.log(dataObject)
+		return dataObject
 	}
 	module.exports= {
 		matchUrl
