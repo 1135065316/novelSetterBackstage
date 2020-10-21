@@ -1,17 +1,36 @@
 const mysql      = require('mysql');
-const connection = mysql.createConnection({
-  host     : '127.0.0.1',
+const config = {
+	host     : '127.0.0.1',
   user     : 'root',
 	password : 'root',
 	database: 'mysql'
-});
+}
+let db = null
 
-connection.connect()
+function handleError (err) {
+  if (err) {
+    // 如果是连接断开，自动重新连接
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+			console.log('执行mysql断线重连...')
+      connect();
+    } else {
+      console.error(err.stack || err);
+    }
+  }
+}
+
+// 连接数据库
+function connect () {
+  db = mysql.createConnection(config);
+  db.connect(handleError);
+  db.on('error', handleError);
+}
+connect()
 
 // 执行一条查询语句
 function query(sql) {
 	return new Promise((resolve, reject) => {
-		connection.query(sql, (error, result, fields) => {
+		db.query(sql, (error, result, fields) => {
 				if (error) {
 						console.log(error.message);
 						reject(error.message);
