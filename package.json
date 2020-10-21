@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/1135065316/novelSetterBackstage/issues"
   },
-  "homepage": "https://github.com/1135065316/novelSetterBackstage#readme"
+  "homepage": "https://github.com/1135065316/novelSetterBackstage#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }
