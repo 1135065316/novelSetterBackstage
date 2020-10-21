@@ -2,7 +2,7 @@
 	function matchUrl(req,dataObject,mysql) {
 		switch(req.url) {
 			case '/card_pool/upload_card':
-				return uploadCard(dataObject)
+				return uploadCard(dataObject,mysql)
 				break;
 			// case '/card_pool/download':
 			// 	 console.log(2)
@@ -10,11 +10,18 @@
 			// case '/card_pool/upload':
 			// console.log(3)
 			// break;
- 	} 
+ 		} 
 	}
-	function uploadCard(dataObject) {
+
+	// 上传卡片
+	function uploadCard(dataObject,mysql) {
+		mysql.insert({
+			name: 'zs',
+			age: '13',
+			work: 'aaa'
+		},'test')
 		console.log(dataObject)
-		return dataObject
+		return 'ok'
 	}
 	module.exports= {
 		matchUrl

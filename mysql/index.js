@@ -22,6 +22,23 @@ function query(sql) {
 	})
 }
 
+// 插入数据
+function insert(info,table) {
+	let sql = "INSERT INTO " + table + "(";
+	let keyArray = [];
+	let valueArray = [];
+	Object.keys(info).forEach((key) => {
+			keyArray.push(key);
+			valueArray.push("'" + info[key] + "'");
+	});
+	let keyStr = keyArray.join(',');
+	let valueStr = valueArray.join(',');
+	sql += keyStr + ') ';
+	sql += 'VALUES(' + valueStr + ')';
+	return query(sql);
+}
+
 module.exports= {
-	query
+	query,
+	insert
 }
