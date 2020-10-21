@@ -1,8 +1,10 @@
-	
-	function matchUrl(req,dataObject,mysql) {
+	// mysql
+	const mysql = require('../mysql/index')
+
+	function matchUrl(req,data) {
 		switch(req.url) {
 			case '/card_pool/upload_card':
-				return uploadCard(dataObject,mysql)
+				return uploadCard(data)
 				break;
 			// case '/card_pool/download':
 			// 	 console.log(2)
@@ -14,15 +16,10 @@
 	}
 
 	// 上传卡片
-	function uploadCard(dataObject,mysql) {
-		mysql.insert({
-			name: 'zs',
-			age: '13',
-			work: 'aaa'
-		},'test')
-		console.log(dataObject)
-		return 'ok'
+	async function uploadCard(data) {
+		await mysql.insert(data,'card_pool')
 	}
+	
 	module.exports= {
 		matchUrl
 	}

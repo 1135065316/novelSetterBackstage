@@ -1,8 +1,7 @@
 const cardPool = require('./cardPool/index.js')
 // 简单实例
 const http = require('http')
-// mysql
-const mysql = require('./mysql/index')
+
 
 const hostname = '127.0.0.1'
 const port = 3000
@@ -25,9 +24,10 @@ const server = http.createServer((req, res) => {
 			let dataObject = JSON.parse(reqData);
 			// 处理请求
 			if(req.url.search('card_pool')!=-1){
-				data = cardPool.matchUrl(req,dataObject,mysql)
+				cardPool.matchUrl(req,dataObject).then(()=>{
+					res.end('ok')
+				})
 			}
-  		res.end(JSON.stringify(data))
 		});
 	}
 	// else {
