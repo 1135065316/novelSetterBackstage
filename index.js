@@ -1,13 +1,14 @@
 const cardPool = require('./cardPool/index.js')
 // 简单实例
 const http = require('http')
+// mysql
+const mysql = require('./mysql/index')
 
 const hostname = '127.0.0.1'
 const port = 3000
 
 const server = http.createServer((req, res) => {
 	// console.log(req)
-	// console.log(req.url,req.url === '/',req.method,req.method==='GET')
 	res.statusCode = 200
   res.setHeader('Content-Type', 'application/json;charset=utf-8')
 	res.setHeader('Access-Control-Allow-Origin', '*')
@@ -24,7 +25,7 @@ const server = http.createServer((req, res) => {
 			let dataObject = JSON.parse(reqData);
 			// 处理请求
 			if(req.url.search('card_pool')!=-1){
-				data = cardPool.matchUrl(req.url,dataObject)
+				data = cardPool.matchUrl(req,dataObject,mysql)
 			}
   		res.end(JSON.stringify(data))
 		});

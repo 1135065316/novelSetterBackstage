@@ -1,6 +1,6 @@
 	
-	function matchUrl(url,dataObject) {
-		switch(url) {
+	function matchUrl(req,dataObject,mysql) {
+		switch(req.url) {
 			case '/card_pool/upload_card':
 				return uploadCard(dataObject)
 				break;
